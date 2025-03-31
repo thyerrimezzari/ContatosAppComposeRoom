@@ -26,31 +26,18 @@ fun ContactApp(users: List<User>, addUser: (user: User) -> Unit) {
     val keyboardController = LocalSoftwareKeyboardController.current
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
+        modifier = Modifier.fillMaxSize().padding(16.dp)
     ) {
         Text(
             text = "Lista de Contatos",
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .padding(bottom = 16.dp)
+            modifier = Modifier.padding(bottom = 16.dp)
         )
-
-        LazyColumn(
-            modifier = Modifier.weight(1f)
-        ) {
-            items(contacts) { contact ->
-                ContactItem(contact)
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp)
         ) {
             BasicTextField(
                 value = nome,
@@ -58,7 +45,11 @@ fun ContactApp(users: List<User>, addUser: (user: User) -> Unit) {
                 modifier = Modifier
                     .weight(1f)
                     .padding(end = 8.dp)
-                    .border(1.dp, MaterialTheme.colorScheme.primary, shape = MaterialTheme.shapes.medium)
+                    .border(
+                        1.dp,
+                        MaterialTheme.colorScheme.primary,
+                        shape = MaterialTheme.shapes.medium
+                    )
                     .padding(8.dp)
             )
             BasicTextField(
@@ -67,7 +58,11 @@ fun ContactApp(users: List<User>, addUser: (user: User) -> Unit) {
                 modifier = Modifier
                     .weight(1f)
                     .padding(end = 8.dp)
-                    .border(1.dp, MaterialTheme.colorScheme.primary, shape = MaterialTheme.shapes.medium)
+                    .border(
+                        1.dp,
+                        MaterialTheme.colorScheme.primary,
+                        shape = MaterialTheme.shapes.medium
+                    )
                     .padding(8.dp)
             )
 
@@ -86,6 +81,14 @@ fun ContactApp(users: List<User>, addUser: (user: User) -> Unit) {
                 Text(text = "Adicionar")
             }
         }
+
+        LazyColumn {
+            items(contacts) { contact ->
+                ContactItem(contact)
+            }
+        }
+
+
     }
 }
 
@@ -103,5 +106,9 @@ fun ContactItem(user: User) {
 @Preview(showBackground = true)
 @Composable
 fun ContactAppPreview() {
-    //ContactApp()
+    val users = mutableListOf(
+        User(1, "aaa", "bbb"),
+        User(2, "ccc", "ddd"),
+    )
+    ContactApp(users, {})
 }

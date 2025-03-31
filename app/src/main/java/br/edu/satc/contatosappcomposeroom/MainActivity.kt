@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Inicializar banco de dados.
+        // Init database.
         val db = Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java, "br.edu.satc.contatosapp"
